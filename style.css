@@ -6,16 +6,17 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: #333;
   background: #fff;
+  scroll-behavior: smooth;
 }
 
 /* Container */
 .container {
   width: 90%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
 }
 
@@ -23,9 +24,10 @@ body {
 .navbar {
   background: #fff;
   padding: 1rem 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 
 .nav-flex {
@@ -34,25 +36,58 @@ body {
   align-items: center;
 }
 
-.logo {
-  height: 40px;
+.nav-links a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #16a34a;
 }
 
 /* Hero */
 .hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #fff;
   padding: 4rem 1rem;
-  text-align: center;
+}
+
+.hero-content {
+  flex: 1 1 400px;
+  padding: 1rem;
 }
 
 .hero h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
 .hero p {
   margin-bottom: 1.5rem;
+}
+
+.hero-image {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 300px;
+  border-radius: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
 
 /* Section */
@@ -62,8 +97,20 @@ body {
 
 .section-title {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
+  color: #16a34a;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #16a34a;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
 }
 
 .bg-light {
@@ -81,15 +128,35 @@ body {
 .card {
   background: #fff;
   padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card img {
   max-width: 100%;
   border-radius: 8px;
   margin-bottom: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Animation fade-in */
+.animate {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Form */
@@ -103,7 +170,7 @@ body {
 .form textarea {
   padding: 0.75rem;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
 }
 
@@ -113,8 +180,9 @@ body {
   color: #fff;
   font-size: 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .form button:hover {
@@ -125,10 +193,11 @@ body {
 .btn {
   background: #16a34a;
   color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 .btn:hover {
@@ -138,10 +207,11 @@ body {
 .btn-light {
   background: #fff;
   color: #16a34a;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 .btn-light:hover {
@@ -150,8 +220,33 @@ body {
 
 /* Footer */
 .footer {
-  background: #333;
+  background: #222;
   color: #fff;
   text-align: center;
-  padding: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.footer a {
+  color: #22c55e;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image img {
+    margin-top: 2rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
 }
